@@ -58,42 +58,43 @@ while True:
                     PAGES = int(new_page_count)
                     options["pages"] = PAGES
                     print("\nPage count updated to {}.\n".format(PAGES))
-                    break
                 else:
                     print("Invalid input. Page count must be a positive integer.")
+                    continue
             elif choice == '2':
                 new_scale = input("Enter new scale (positive integer): ")
                 if new_scale.isdigit() and int(new_scale) > 0:
                     SCALE = int(new_scale)
                     options["scale"] = SCALE
                     print("\nScale updated to {}.\n".format(SCALE))
-                    break
                 else:
                     print("Invalid input. Scale must be a positive integer.")
+                    continue
             elif choice == '3':
                 new_width = input("Enter new width (positive integer): ")
                 if new_width.isdigit() and int(new_width) > 0:
                     WIDTH = int(new_width)
                     options["width"] = WIDTH
                     print("\nWidth updated to {}.\n".format(WIDTH))
-                    break
                 else:
                     print("Invalid input. Width must be a positive integer.")
+                    continue
             elif choice == '4':
                 new_height = input("Enter new height (positive integer): ")
                 if new_height.isdigit() and int(new_height) > 0:
                     HEIGHT = int(new_height)
                     options["height"] = HEIGHT
                     print("\nHeight updated to {}.\n".format(HEIGHT))
-                    break
                 else:
                     print("Invalid input. Height must be a positive integer.")
+                    continue
             elif choice == '5':
                 print("\n")
                 break
-
+            
             with open(f"{TEMPLATE_PATH}/options.json", "w") as f:
-                        json.dump(options, f, indent=4)
+                json.dump(options, f, indent=4)
+            break
 
 # # CREATE IMAGES
 doctype = b"<!DOCTYPE DOC PUBLIC '-//KDE//DTD krita 2.0//EN' 'http://www.calligra.org/DTD/krita-2.0.dtd'>"
