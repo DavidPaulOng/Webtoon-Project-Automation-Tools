@@ -23,18 +23,19 @@ for idx_img, file in enumerate(os.listdir('.')):
         image = cv2.imread(file)
 
         # COUNT NUMBER OF PAGES
-        magnification = image.shape[1] // WIDTH
-        if magnification == 0:
-            print(f"❌ Error: Image {file} is too small to be spliced into {WIDTH}x{HEIGHT} pages.")
+        scale = image.shape[1] // WIDTH
+        pages = image.shape[0] // (HEIGHT * scale)
+
+        if scale == 0 or pages == 0:
+            print(f"❌ Error: Image {file} is in the wrong orientation or is too small to be spliced into {WIDTH}x{HEIGHT} pages.")
             input("Press Enter to exit...")
             exit(1)  
         if image.shape[1] % WIDTH != 0:
             print(f"⚠️ Warning: Image {file} width is not a multiple of {WIDTH}. The image will be squashed.")
             input("Press Enter to Continue...")
-        if image.shape[0] % (HEIGHT * magnification) != 0:
+        if image.shape[0] % (HEIGHT * scale) != 0:
             print(f"⚠️ Warning: Image {file} height is not a multiple of {HEIGHT}. The image will be squashed.")
             input("Press Enter to Continue...")
-        pages = image.shape[0] // (HEIGHT * magnification)
 
         # RESIZE IMAGE
         image = cv2.resize(image, (WIDTH, HEIGHT*pages))
