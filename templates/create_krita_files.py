@@ -22,11 +22,13 @@ template = io.BytesIO(template)
 # LOAD OPTIONS
 with open(f"{TEMPLATE_PATH}/options.json", "r") as f:
     options = json.load(f)
+    
 WIDTH = options["width"]
 HEIGHT = options["height"]
 SCALE = options["scale"]
 PAGES = options["pages"]
 CURRENT_SUB_NUM = None
+
 cwd = os.getcwd()
 krita_files = [d for d in os.listdir(".") if d.endswith('.kra')]
 CURRENT_EPISODE_NUM = int(re.findall(r'\d+$', cwd)[0])

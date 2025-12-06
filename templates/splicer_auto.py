@@ -18,7 +18,8 @@ WIDTH, HEIGHT = 800, 1280 # Webtoons page size standard
 if not os.path.exists("Spliced"):
     os.makedirs("Spliced")
 
-for idx_img, file in enumerate(os.listdir('.')):
+idx_img = 1
+for file in os.listdir('.'):
     if file.endswith('.png') or file.endswith('.jpg') or file.endswith('.jpeg'):
         image = cv2.imread(file)
 
@@ -44,8 +45,9 @@ for idx_img, file in enumerate(os.listdir('.')):
         idx_page = 1
         for page in range(pages):
             spliced_img = image[(page)*HEIGHT:(page+1)*HEIGHT,:,:]
-            cv2.imwrite(f"Spliced/{idx_img+1}.{idx_page}.png", spliced_img)
+            cv2.imwrite(f"Spliced/{idx_img}.{idx_page}.png", spliced_img)
             idx_page += 1
+        idx_img += 1
 
 # # REFRESHING EXPLORER
 ctypes.windll.shell32.SHChangeNotify(0x8000000, 0x1000, None, None)

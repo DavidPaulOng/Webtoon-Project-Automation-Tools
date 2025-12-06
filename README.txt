@@ -26,3 +26,9 @@ Each of these variables is customizable as an option.
 Base Width and Base Height are multiplied by Scale to get the final size of a page.
 A higher scale allows you to create more detailed images, which can translate to higher
 quality images after resize.
+
+5. export_images
+Export saved images from all Krita files in the directory.
+Place this script in the same directory as your .kra files and run it.
+The exported images will be saved as .png files with the same name as the .kra files in
+the same directory. 
